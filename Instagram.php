@@ -13,7 +13,7 @@ function getImagesByHashtag($hashtag = null, $count = 16)
     return $more;
 }
 
-function getImagesByUserID($user, $count = 16)
+function getImagesByUserID($user = null, $count = 16)
 {
 	if ( empty($user) || !(is_string($user) || is_int($user)) )
 	{
