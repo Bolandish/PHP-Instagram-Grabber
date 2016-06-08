@@ -1,5 +1,5 @@
 {
-  "name": "bolandish/instagram",
+  "name": "bolandish/instagram-grabber",
   "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken",
   "authors": [
     {
