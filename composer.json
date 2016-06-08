@@ -1,0 +1,14 @@
+{
+  "name": "bolandish/instagram",
+  "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken",
+  "authors": [
+    {
+      "name": "Thomas Bolander",
+      "email": "privat@thomasbolander.dk"
+    }
+  ],
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {"Bolandish\\": "src/"}
+  }
+}

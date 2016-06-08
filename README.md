@@ -4,19 +4,23 @@ No need for accesstoken :)
 
 There is [WordPress wrapper plugin](#plugins) made out of this workaround.
 
-## Include
+##Install
+
+### Include
 ```php
-include 'instagram.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 ```
 
-## Get by hashtag
+##Usage
+
+### Get by hashtag
 ```php
-getImagesByHashtag("nofilter", 16);
+Bolandish\Instagram::getMediaByHashtag("nofilter", 10);
 ```
 
-## Get by user id
+### Get by user id
 ```php
-getImagesByUserID(12345, 16);
+Bolandish\Instagram::getMediaByHashtag(460563723, 10);
 ```
 
 If something missing in the response, please open an issue to report :)
