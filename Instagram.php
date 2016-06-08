@@ -6,7 +6,6 @@ function getImagesByHashtag($hashtag, $count = 16)
     $more = json_decode(file_get_contents($url));
     $more = $more->media->nodes;
     return $more;
-
 }
 
 ?>
