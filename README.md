@@ -11,9 +11,9 @@ There is [WordPress wrapper plugin](#plugins) made out of this workaround.
 composer require bolandish/instagram-grabber
 ```
 
-### Include
+### Via Include
 ```php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once '/vendor/autoload.php';
 ```
 
 ##Usage
