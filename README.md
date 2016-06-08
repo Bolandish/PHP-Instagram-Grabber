@@ -25,7 +25,7 @@ Bolandish\Instagram::getMediaByHashtag("nofilter", 10);
 
 ### Get by user id
 ```php
-Bolandish\Instagram::getMediaByHashtag(460563723, 10);
+Bolandish\Instagram::getMediaByUserID(460563723, 10);
 ```
 
 If something missing in the response, please open an issue to report :)
