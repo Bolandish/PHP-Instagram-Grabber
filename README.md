@@ -6,6 +6,11 @@ There is [WordPress wrapper plugin](#plugins) made out of this workaround.
 
 ##Install
 
+### Via Composer
+```
+composer require bolandish/instagram-grabber
+```
+
 ### Include
 ```php
 require_once __DIR__ . '/../vendor/autoload.php';
