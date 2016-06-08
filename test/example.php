@@ -8,3 +8,11 @@ print_r($media);
 //Its getting 10 images/videoes from Selena Gomezs instagram.. mmhh..
 $media = Bolandish\Instagram::getMediaByHashtag(460563723, 10);
 print_r($media);
+
+//Display square images only
+$media = Bolandish\Instagram::getMediaByHashtag("wildlife", 20);
+foreach($media as $key=>$value){
+  if ($media[$key]->dimensions->width === $media[$key]->dimensions->height){
+    echo '<img src="' .$media[$key]->display_src. '" alt="' .$media[$key]->caption. '" />';
+  }
+}
