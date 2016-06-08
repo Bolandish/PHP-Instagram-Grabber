@@ -1,11 +1,18 @@
-# Get instagram images by hashtag and user-id!
-A workaround for the new Instagram policy to get images by hashtag and user-id
+# Get instagram images by hashtag and user id!
+A workaround for the new Instagram policy to get images by hashtag and user id
 No need for any accesstoken :)
 
+
+```php
+include 'instagram.php';
+```
+
+##Get by hashtag
 ```php
 getImagesByHashtag("nofilter", 16);
 ```
 
+##Get by user id
 ```php
 getImagesByUserID(12345, 16);
 ```
