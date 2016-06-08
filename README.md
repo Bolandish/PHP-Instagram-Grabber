@@ -7,7 +7,7 @@ There is [WordPress wrapper plugin](#plugins) made out of this workaround.
 ##Install
 
 ### Via Composer
-```
+```shell
 composer require bolandish/instagram-grabber
 ```
 
