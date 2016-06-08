@@ -11,8 +11,8 @@ print_r($media);
 
 //Display square images only
 $media = Bolandish\Instagram::getMediaByHashtag("wildlife", 20);
-foreach($pics as $key=>$value){
-  if ($pics[$key]->dimensions->width === $pics[$key]->dimensions->height){
-    echo '<img src="'.$pics[$key]->display_src.'"/>';
+foreach($media as $key=>$value){
+  if ($media[$key]->dimensions->width === $media[$key]->dimensions->height){
+    echo '<img src="' .$media[$key]->display_src. '" alt="' .$media[$key]->caption. '" />';
   }
 }
