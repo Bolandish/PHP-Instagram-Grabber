@@ -11,4 +11,4 @@
   "autoload": {
     "psr-4": {"Bolandish\\": "src/"}
   }
-} 
+}
