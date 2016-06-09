@@ -2,8 +2,6 @@
 A workaround for the new Instagram policy to get images by hashtag and user id.
 No need for accesstoken :)
 
-There is [WordPress wrapper plugin](#plugins) made out of this workaround.
-
 ##Install
 
 ### Via Composer
@@ -26,6 +24,11 @@ Bolandish\Instagram::getMediaByHashtag("nofilter", 10);
 ### Get by user id
 ```php
 Bolandish\Instagram::getMediaByUserID(460563723, 10);
+```
+
+### Get after a specific post by user id
+```php
+Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 ```
 
 If something missing in the response, please open an issue to report :)
