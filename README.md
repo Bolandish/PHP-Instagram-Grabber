@@ -2,6 +2,8 @@
 A workaround for the new Instagram policy to get images by hashtag and user id.
 No need for accesstoken :)
 Use at your own risk.
+
+By [Vassardish](https://github.com/Vassard) and [Bolandish](https://github.com/Bolandish)
 ##Install
 
 ### Via Composer
