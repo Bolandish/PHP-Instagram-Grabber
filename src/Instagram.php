@@ -99,8 +99,3 @@ class Instagram {
         return $comments;
     }    
 }
-
-
-
-?>
-
