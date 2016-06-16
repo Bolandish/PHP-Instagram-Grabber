@@ -10,6 +10,12 @@ $media = Bolandish\Instagram::getMediaByUserID(460563723, 10);
 //Get 10 images/videos after the media with the id 1060728019300790746 from Selena Gomex
 $media = Bolandish\Instagram::getMediaAfterByUserID(460563723,1060728019300790746, 10);
 
+//Its getting 10 last comments under Selena Gomezs photo
+$media = Bolandish\Instagram::getCommentsByMediaShortcode("BGQh8XmOjLM", 10); 
+
+//Get 10 comments before the comment with the id 17862588298017953 under Selena Gomezs photo
+$media = Bolandish\Instagram::getCommentsBeforeByMediaShortcode("BGQh8XmOjLM", 17862588298017953, 10); 
+
 //Display square images only
 $media = Bolandish\Instagram::getMediaByHashtag("wildlife", 20);
 foreach($media as $value){

@@ -68,9 +68,34 @@ class Instagram {
 
         return $media;
     }
+
+    public static function getCommentsByMediaShortcode($media_shortcode = null, $count = 16, $assoc = false)
+    {
+
+        $comments = "comments.last($count) {           count,           nodes {             id,             created_at,             text,             user {               id,               profile_pic_url,               username             }           },           page_info         }";
+
+        $parameters = urlencode("ig_shortcode({$media_shortcode}) { $comments }");
+        $url = "https://www.instagram.com/query/?q=$parameters&ref=media%3A%3Ashow";
+        $comments = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        if($assoc == "array")
+            $comments = $comments["comments"]["nodes"];
+        else
+            $comments = $comments->comments->nodes;
+        return $comments;
+    }
+
+    public static function getCommentsBeforeByMediaShortcode($media_shortcode = null, $max_id, $count = 16, $assoc = false)
+    {
+
+        $comments = "comments.before($max_id, $count) {           count,           nodes {             id,             created_at,             text,             user {               id,               profile_pic_url,               username             }           },           page_info         }";
+
+        $parameters = urlencode("ig_shortcode({$media_shortcode}) { $comments }");
+        $url = "https://www.instagram.com/query/?q=$parameters&ref=media%3A%3Ashow";
+        $comments = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        if($assoc == "array")
+            $comments = $comments["comments"]["nodes"];
+        else
+            $comments = $comments->comments->nodes;
+        return $comments;
+    }    
 }
-
-
-
-?>
-
