@@ -2,6 +2,20 @@
 namespace Bolandish;
 
 class Instagram {
+    
+    protected static function getContentsFromUrl($url) {
+        if (!function_exists('curl_init')) {
+            return file_get_contents($url);
+        }
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+    
     public static function getMediaByHashtag($hashtag = null, $count = 16, $assoc = false, $comment_count = false)
     {
         if ( empty($hashtag) || !is_string($hashtag) )
@@ -16,7 +30,7 @@ class Instagram {
         $hashtag = strtolower($hashtag);
         $parameters = urlencode("ig_hashtag($hashtag) { media.first($count) {   count,   nodes {     caption,     code,   $comments,     date,     dimensions {       height,       width     },     display_src,     id,     is_video,     likes {       count     },     owner {       id,       username,       full_name,       profile_pic_url,     biography     },     thumbnail_src,     video_views,     video_url   },   page_info }  }");
         $url = "https://www.instagram.com/query/?q=$parameters&ref=tags%3A%3Ashow";
-        $media = json_decode(file_get_contents($url), ($assoc || $assoc == "array"));
+        $media = json_decode(static::getContentsFromUrl($url), ($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
         else
@@ -37,7 +51,7 @@ class Instagram {
         }
         $parameters = urlencode("ig_user($user) { media.first($count) {   count,   nodes {     caption,     code,     $comments,     date,     dimensions {       height,       width     },     display_src,     id,     is_video,     likes {       count     },     owner {       id,       username,       full_name,       profile_pic_url,     biography     },     thumbnail_src,     video_views,     video_url   },   page_info }  }");
         $url = "https://www.instagram.com/query/?q=$parameters&ref=tags%3A%3Ashow";
-        $media = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        $media = json_decode(static::getContentsFromUrl($url),($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
         else
@@ -60,7 +74,7 @@ class Instagram {
         $parameters = urlencode("ig_user($user) { media.after($min_id,$count) {   count,   nodes {     caption,     code,    $comments,   date,     dimensions {       height,       width     },     display_src,     id,     is_video,     likes {       count     },     owner {       id,       username,       full_name,       profile_pic_url,     biography     },     thumbnail_src,     video_views,     video_url   },   page_info }  }");
 
         $url = "https://www.instagram.com/query/?q=$parameters&ref=tags%3A%3Ashow";
-        $media = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        $media = json_decode(static::getContentsFromUrl($url),($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
         else
@@ -76,7 +90,7 @@ class Instagram {
 
         $parameters = urlencode("ig_shortcode({$media_shortcode}) { $comments }");
         $url = "https://www.instagram.com/query/?q=$parameters&ref=media%3A%3Ashow";
-        $comments = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        $comments = json_decode(static::getContentsFromUrl($url),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
         else
@@ -91,7 +105,7 @@ class Instagram {
 
         $parameters = urlencode("ig_shortcode({$media_shortcode}) { $comments }");
         $url = "https://www.instagram.com/query/?q=$parameters&ref=media%3A%3Ashow";
-        $comments = json_decode(file_get_contents($url),($assoc || $assoc == "array"));
+        $comments = json_decode(static::getContentsFromUrl($url),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
         else
