@@ -1,3 +1,5 @@
+24-11-2016 : Instagram closed the endpoint. We are trying figure out the new endpoint
+
 # Get instagram images by hashtag and user id!
 A workaround for the new Instagram policy to get images by hashtag and user id.
 No need for accesstoken :)
