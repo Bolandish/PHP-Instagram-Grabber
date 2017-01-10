@@ -51,8 +51,10 @@ class Instagram {
         $media = json_decode(static::getContentsFromUrl($parameters), ($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
-        else
+        elseif (isset($media->media->nodes))
             $media = $media->media->nodes;
+        else
+            $media = array();
         return $media;
     }
 
@@ -113,8 +115,10 @@ class Instagram {
         $comments = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
-        else
+        elseif (isset($comments->comments->nodes))
             $comments = $comments->comments->nodes;
+        else
+            $comments = array();
         return $comments;
     }
 
@@ -127,8 +131,10 @@ class Instagram {
         $comments = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
-        else
+        elseif (isset($comments->comments->nodes))
             $comments = $comments->comments->nodes;
+        else
+            $comments = array();
         return $comments;
     }
 }
