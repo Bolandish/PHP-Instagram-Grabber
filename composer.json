@@ -7,7 +7,7 @@
       "email": "privat@thomasbolander.dk"
     }
   ],
-  "version": "1.0.10",
+  "version": "1.0.13",
   "autoload": {
     "psr-4": {"Bolandish\\": "src/"}
   }
