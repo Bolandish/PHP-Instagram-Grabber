@@ -2,6 +2,7 @@
 namespace Bolandish;
 
 class Instagram {
+
     protected static function getContentsFromUrl($parameters) {
         if (!function_exists('curl_init')) {
             return false;
