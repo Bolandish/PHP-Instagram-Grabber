@@ -18,16 +18,18 @@ class Instagram {
         }
     }
 
-    protected static function getContentsFromUrl($parameters) {
+    protected static function getContentsFromUrl($parameters, $url = "https://www.instagram.com/query/") {
         if (!function_exists('curl_init')) {
             return false;
         }
         $random = self::generateRandomString();
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://www.instagram.com/query/");
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 'q='.$parameters);
+        if ($parameters) {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'q='.$parameters);
+        }
         foreach (self::$curlProxy as $k => $v) {
             curl_setopt($ch, $k, $v);
         }
@@ -154,5 +156,23 @@ class Instagram {
         else
             $comments = array();
         return $comments;
+    }
+
+    public static function getUserByUsername($username = null, $assoc = false)
+    {
+        if ( empty($username) || !(is_string($username) || is_int($username)) )
+        {
+            return false;
+        }
+
+        $user = json_decode(static::getContentsFromUrl(null, "https://www.instagram.com/{$username}/?__a=1"),($assoc || $assoc == "array"));
+        if($assoc == "array")
+            $user = $user["user"];
+        elseif (isset($user->user))
+            $user = $user->user;
+        else
+            $user = array();
+
+        return $user;
     }
 }
