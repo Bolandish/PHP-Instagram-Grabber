@@ -55,7 +55,7 @@ class Instagram {
         return $randomString;
     }
 
-    public static function getMediaByHashtag($hashtag = null, $count = 16, $assoc = false, $comment_count = false)
+    public static function getMediaByHashtag($hashtag = null, $count = 16, $assoc = false, $comment_count = false, $after = '')
     {
         if ( empty($hashtag) || !is_string($hashtag) )
         {
@@ -67,7 +67,8 @@ class Instagram {
             $comments = "comments {       count     }";
         }
         $hashtag = strtolower($hashtag);
-        $parameters = urlencode("ig_hashtag($hashtag) { media.first($count) {   count,   nodes {     caption,     code,   $comments,     date,     dimensions {       height,       width     },     display_src,     id,     is_video,     likes {       count     },     owner {       id,       username,       full_name,       profile_pic_url,     biography     },     thumbnail_src,     video_views,     video_url   },   page_info }  }");
+        $function = $after ? "media.after($after, $count)" : "media.first($count)";
+        $parameters = urlencode("ig_hashtag($hashtag) { $after {   count,   nodes {     caption,     code,   $comments,     date,     dimensions {       height,       width     },     display_src,     id,     is_video,     likes {       count     },     owner {       id,       username,       full_name,       profile_pic_url,     biography     },     thumbnail_src,     video_views,     video_url   },   page_info }  }");
         $media = json_decode(static::getContentsFromUrl($parameters), ($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
